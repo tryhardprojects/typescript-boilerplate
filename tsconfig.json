@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "target": "es6",
+      "module": "commonjs",
+      "sourceMap": true,
+      "outDir": "./serverBuild",
+      "strict": true,
+      "esModuleInterop": true 
+  },
+  "include": [
+      "src/server/**/*"
+  ],
+  "exclude": [
+      "node_modules"
+  ]
+}
