@@ -6,6 +6,13 @@ import ExtractTextPlugin from "extract-text-webpack-plugin";
 const extractTextPlugin = new ExtractTextPlugin({
     filename: "css/test.css",
 });
+const htmlPlugins = [
+    new HtmlWebPackPlugin({
+        template: "./src/html/test.html",
+        filename: "html/test.html",
+        chunks: ["testScript"],
+    }),
+];
 
 const config: webpack.Configuration = {
     // defaults to ./src
@@ -31,6 +38,13 @@ const config: webpack.Configuration = {
             {
                 test: /\.tsx?$/,
                 loader: "ts-loader",
+            },
+            {
+                test: /\.(scss|sass)$/,
+                use: ExtractTextPlugin.extract([
+                    "css-loader", // translates CSS into CommonJS
+                    "sass-loader" // compiles Sass to CSS, using Node Sass by default
+                ]),
             },
             {
                 test: /\.css$/,
@@ -61,10 +75,10 @@ const config: webpack.Configuration = {
     },
     plugins: [
         extractTextPlugin,
-        new HtmlWebPackPlugin({
-            template: "./src/html/test.html",
-            filename: "html/test.html",
+        new webpack.ProvidePlugin({
+            $: "jquery",
         }),
+        ...htmlPlugins,
     ],
     devServer: {
         open: true,
