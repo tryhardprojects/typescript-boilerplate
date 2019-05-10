@@ -8,7 +8,8 @@
     "build": "npm run tslint&&tsc&&npm run webpack",
     "tslint": "tslint -c tslint.json 'server/**/*.ts'",
     "webpack": "webpack --config webpack.config.ts",
-    "webpackDev": "webpack-dev-server --config webpack.config.ts"
+    "webpackDev": "webpack-dev-server --config webpack.config.ts",
+    "start": "node serverBuild/server.js"
   },
   "keywords": [],
   "author": "",
